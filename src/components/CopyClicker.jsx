@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 const CopyClicker = (props) => {
-    const { copies, CpC } = props
+    const { copies, CpC, copyClicked, upgradeCopy } = props
 
     const onCopyClicked = () => {
         copyClicked()
     }
 
     const onImproveCopy = () => {
-        // ToDo: write some code
+        upgradeCopy()
     }
 
     return (
@@ -28,7 +28,7 @@ const CopyClicker = (props) => {
             </p>
 
             <button type="button" onClick={onImproveCopy}>
-                {`Upgrade ClicksPerCopy for ${CpC * CpC + 1} copies`}
+                {`Upgrade ClicksPerCopy for ${CpC} copies`}
             </button>
 
             <p title="copies per click">
@@ -40,16 +40,19 @@ const CopyClicker = (props) => {
 
 CopyClicker.propTypes = {
     copies: PropTypes.number.isRequired,
-    CpC: PropTypes.number.isRequired
-
+    CpC: PropTypes.number.isRequired,
+    copyClicked: PropTypes.func.isRequired,
+    upgradeCopy: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
     copies: state.copies,
+    CpC: state.CpC
 })
 
 const mapDispatchToProps = (dispatch) => ({
     copyClicked: () => dispatch({ type: 'COPY_CLICK' }),
+    upgradeCopy: () => dispatch({ type: 'UPGRADE_COPY' })
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CopyClicker)
