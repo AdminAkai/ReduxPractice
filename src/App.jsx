@@ -8,20 +8,16 @@ const initialState = {
     copies: 0,
 }
 
-function reducer(state = initialState, action) {
-    console.log('reducer action: ', action)
-    const { type } = action
-    switch (type) {
-        case 'COPY_CLICK':
-            return {
-                copies: state.copies + 1,
-            }
-        default:
-            return state
-    }
+const reducer = (state = initialState, action) => {
+    console.log('Reducer: ', action)
+    return state
 }
 
 const store = createStore(reducer)
+
+console.log("Our Current State: ", store.getState())
+
+store.dispatch({ type: 'COPY_CLICK' })
 
 function App() {
     return (
@@ -31,7 +27,8 @@ function App() {
                     Copy Clicker
                 </header>
 
-                <CopyClicker CpC={1} />
+                <CopyClicker copies={0} CpC={1}/>
+
             </div>
         </Provider>
     )

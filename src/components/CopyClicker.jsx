@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 const CopyClicker = (props) => {
-    const { copies, CpC, copyClicked } = props
+    const { copies, CpC } = props
 
     const onCopyClicked = () => {
         copyClicked()
@@ -40,8 +40,8 @@ const CopyClicker = (props) => {
 
 CopyClicker.propTypes = {
     copies: PropTypes.number.isRequired,
-    CpC: PropTypes.number.isRequired,
-    copyClicked: PropTypes.func.isRequired,
+    CpC: PropTypes.number.isRequired
+
 }
 
 const mapStateToProps = (state) => ({
